@@ -62,13 +62,17 @@ def main():
         )
 
         # Display the results with the appropriate currency format
-        st.write(f"**Advance Payment**: ₦{advance_payment:,.2f}")
-        st.write(f"**Retention**: ₦{retention_amount:,.2f}")
-        st.write(f"**Total Net Payment**: ₦{total_net_payment:,.2f}")
-        st.write(f"**VAT**: ₦{vat_amount:,.2f}")
-        st.write(f"**Total Net Amount**: ₦{total_net_amount:,.2f}")
-        st.write(f"**Advance Payment Refund**: ₦{advance_payment_refund:,.2f}")
-        st.write(f"**Amount Due**: ₦{amount_due:,.2f}")
+        st.subheader("Results")
+
+st.write(f"**Total Contract Sum**: ₦{total_contract_sum:,.2f}")
+st.write(f"**Revised Contract Sum**: ₦{revised_contract_sum:,.2f}")
+st.write(f"**Advance Payment**: ₦{advance_payment:,.2f}")
+st.write(f"**Retention**: ₦{retention_amount:,.2f}")
+st.write(f"**Total Net Payment**: ₦{total_net_payment:,.2f}")
+st.write(f"**VAT**: ₦{vat_amount:,.2f}")
+st.write(f"**Total Net Amount**: ₦{total_net_amount:,.2f}")
+st.write(f"**Advance Payment Refund**: ₦{advance_payment_refund:,.2f}")
+st.write(f"**Amount Due**: ₦{amount_due:,.2f}")
 
 if __name__ == "__main__":
     main()
