@@ -36,7 +36,7 @@ def main():
     st.title("Prepayment Certificate Calculator")
 
     # Input fields for user
-    mda = st.selectbox("Select MDA", ["Ministry of Finance", "Ministry of Economic Planning", "Ministry of Housing", "Other"])
+    mda = st.text_input("MDA (Ministry, Department, or Agency)")
     project_title = st.text_input("Project Title")
     contractor = st.text_input("Contractor")
     payment_stage = st.selectbox("Payment Stage", ["Stage Payment", "Final Payment", "Retention"])
