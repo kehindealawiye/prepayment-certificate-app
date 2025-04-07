@@ -71,14 +71,6 @@ revised_contract_sum = st.number_input("REVISED CONTRACT SUM (₦)", min_value=0
 work_completed = st.number_input("WORK COMPLETED TO DATE (₦)", min_value=0.0, step=100000.0, format="%.2f")
 previous_payment = st.number_input("PREVIOUS PAYMENT (₦)", min_value=0.0, step=100000.0, format="%.2f")
 
-# Percentage Inputs
-advance_payment_pct = st.number_input("Percentage of Advance Payment (%)", min_value=0.0, max_value=100.0, step=1.0)
-advance_refund_pct = st.number_input("Percentage of Advance Payment Refund (%)", min_value=0.0, max_value=100.0, step=1.0)
-
-# Dropdown for Retention and VAT
-has_retention = st.selectbox("Is there Retention?", options=["Yes", "No"])
-has_vat = st.selectbox("Is there VAT?", options=["Yes", "No"])
-
 # Calculate Button
 if st.button("Calculate Now"):
     advance_payment = (advance_payment_pct / 100) * total_contract_sum
