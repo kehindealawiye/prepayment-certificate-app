@@ -101,7 +101,8 @@ if st.button("Calculate Now"):
     df_result = pd.DataFrame.from_dict(results, orient='index', columns=["Value"]).reset_index()
     df_result.columns = ["Metric", "Value"]
 
-    output = BytesIO()
+    # Excel Download Section
+output = BytesIO()
 with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
     df_result.to_excel(writer, index=False, sheet_name='Prepayment Summary')
 output.seek(0)
@@ -111,4 +112,6 @@ st.download_button(
     data=output,
     file_name="prepayment_summary.xlsx",
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
+
 )
