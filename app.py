@@ -27,21 +27,24 @@ st.markdown("""
             background-color: #001f3f !important;
             color: white !important;
         }
-        .css-1cpxqw2, .css-1cpxqw2:focus, textarea, input {
+        .css-1cpxqw2, .css-1cpxqw2:focus {
             background-color: #003366 !important;
             color: white !important;
         }
-        div[role="radiogroup"] > label {
+        .css-1offfwp, .css-1offfwp:focus {
+            color: white !important;
+        }
+        textarea, input {
+            color: white !important;
+            background-color: #003366 !important;
+        }
+        div[data-baseweb="select"] {
             background-color: #003366 !important;
             color: white !important;
-            border-radius: 0.25rem;
-            padding: 0.25rem 0.5rem;
-            margin-right: 0.5rem;
         }
-        div[role="radiogroup"] > label[data-selected="true"] {
-            background-color: #004080 !important;
+        div[data-baseweb="select"] * {
             color: white !important;
-            font-weight: bold;
+            background-color: #003366 !important;
         }
     </style>
 """, unsafe_allow_html=True)
