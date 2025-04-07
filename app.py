@@ -81,11 +81,13 @@ if st.button("Calculate Now"):
     advance_payment_refund = (advance_refund_pct / 100) * advance_payment
     amount_due = total_net_amount - advance_payment_refund - previous_payment
 
-    # Calculation results
-    results = {
+    # Build structured results
+    summary = {
+        "MDA": mda,
+        "Project Title and Contractor": f"{project_title} by {contractor}",
         "TOTAL CONTRACT SUM": f"₦{total_contract_sum:,.2f}",
-        "REVISED CONTRACT SUM": f"₦{revised_contract_sum:,.2f}",
         "ADVANCE PAYMENT": f"₦{advance_payment:,.2f}",
+        "REVISED CONTRACT SUM": f"₦{revised_contract_sum:,.2f}",
         "RETENTION": f"₦{retention:,.2f}",
         "TOTAL NET PAYMENT": f"₦{total_net_payment:,.2f}",
         "VAT": f"₦{vat:,.2f}",
@@ -95,14 +97,13 @@ if st.button("Calculate Now"):
         "AMOUNT DUE": f"₦{amount_due:,.2f}"
     }
 
-    # Display results on screen
-    st.subheader("Results")
-    for key, val in results.items():
-        st.write(f"**{key}:** {val}")
+    # Display results
+    st.subheader("Prepayment Summary")
+    for k, v in summary.items():
+        st.write(f"**{k}:** {v}")
 
-    # Convert results to DataFrame
-    df_result = pd.DataFrame.from_dict(results, orient='index', columns=["Value"]).reset_index()
-    df_result.columns = ["Metric", "Value"]
+    # Convert to DataFrame
+    df_result = pd.DataFrame(list(summary.items()), columns=["Metric", "Value"])
 
     # Excel download section
     output = BytesIO()
