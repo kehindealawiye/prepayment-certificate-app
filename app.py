@@ -107,11 +107,10 @@ with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
     df_result.to_excel(writer, index=False, sheet_name='Prepayment Summary')
 output.seek(0)
 
+# Download button
 st.download_button(
     label="Download Prepayment Summary as Excel",
     data=output,
     file_name="prepayment_summary.xlsx",
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-)
-
 )
