@@ -84,7 +84,8 @@ if st.button("Calculate Now"):
     # Build structured results
     summary = {
     "MDA": mda,
-    "Project Title and Contractor": f"{project_title} by {contractor}",
+    "PROJECT TITLE AND CONTRACTOR": f"{project_title} by {contractor}",
+    "PAYMENT STAGE": payment_stage,
     "TOTAL CONTRACT SUM": f"₦{total_contract_sum:,.2f}",
     "ADVANCE PAYMENT": f"₦{advance_payment:,.2f}",
     "REVISED CONTRACT SUM": f"₦{revised_contract_sum:,.2f}",
