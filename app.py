@@ -2,7 +2,45 @@ import streamlit as st
 import pandas as pd
 from io import BytesIO
 
-st.title("Prepayment Certificate Calculator Cross-Check")
+# Custom CSS for styling
+st.markdown("""
+    <style>
+        body {
+            background-color: #001f3f;
+            color: white;
+        }
+        .stApp {
+            background-color: #001f3f;
+            color: white;
+        }
+        .css-18e3th9, .css-1d391kg {
+            background-color: #001f3f !important;
+            color: white !important;
+        }
+        label, .stTextInput label, .stSelectbox label, .stNumberInput label, .stRadio label {
+            color: white !important;
+        }
+        .st-bb {
+            background-color: #001f3f !important;
+        }
+        .st-cp {
+            color: white !important;
+        }
+        h1, h2, h3, h4, h5 {
+            color: white !important;
+        }
+        .stButton>button {
+            color: white;
+            background-color: #004080;
+        }
+        .stDownloadButton>button {
+            color: white;
+            background-color: #0074D9;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+st.title("Prepayment Certificate Calculator")
 
 # Text Inputs
 mda = st.text_input("MDA")
@@ -26,7 +64,6 @@ previous_payment = st.number_input("PREVIOUS PAYMENT (₦)", min_value=0.0, step
 
 # Calculate Button
 if st.button("Calculate Now"):
-    # Computations
     advance_payment = (advance_payment_pct / 100) * total_contract_sum
     retention = 0.05 * work_completed if has_retention == "Yes" else 0
     total_net_payment = work_completed - retention
@@ -35,7 +72,6 @@ if st.button("Calculate Now"):
     advance_payment_refund = (advance_refund_pct / 100) * advance_payment
     amount_due = total_net_amount - advance_payment_refund - previous_payment
 
-    # Results dictionary
     results = {
         "TOTAL CONTRACT SUM": f"₦{total_contract_sum:,.2f}",
         "REVISED CONTRACT SUM": f"₦{revised_contract_sum:,.2f}",
@@ -49,12 +85,10 @@ if st.button("Calculate Now"):
         "AMOUNT DUE": f"₦{amount_due:,.2f}"
     }
 
-    # Display Results
     st.subheader("Results")
     for key, val in results.items():
         st.write(f"**{key}:** {val}")
 
-    # Prepare for download
     df_result = pd.DataFrame.from_dict(results, orient='index', columns=["Value"]).reset_index()
     df_result.columns = ["Metric", "Value"]
 
@@ -62,4 +96,5 @@ if st.button("Calculate Now"):
     with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
         df_result.to_excel(writer, index=False, sheet_name='Prepayment Summary')
     output.seek(0)
+
     st.download_button("Download Excel", data=output.read(), file_name="prepayment_certificate.xlsx", mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
