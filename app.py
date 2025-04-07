@@ -5,37 +5,43 @@ from io import BytesIO
 # Custom CSS for styling
 st.markdown("""
     <style>
-        body {
-            background-color: #001f3f;
-            color: white;
-        }
         .stApp {
             background-color: #001f3f;
             color: white;
         }
-        .css-18e3th9, .css-1d391kg {
-            background-color: #001f3f !important;
+        html, body, [class*="css"] {
             color: white !important;
-        }
-        label, .stTextInput label, .stSelectbox label, .stNumberInput label, .stRadio label {
-            color: white !important;
-        }
-        .st-bb {
             background-color: #001f3f !important;
         }
-        .st-cp {
+        label, .stTextInput label, .stSelectbox label, .stNumberInput label, .stRadio label, .stMarkdown, .st-b8, .st-ag, .st-cq, .st-bz {
             color: white !important;
+        }
+        .stButton>button, .stDownloadButton>button {
+            color: white;
+            background-color: #004080;
         }
         h1, h2, h3, h4, h5 {
             color: white !important;
         }
-        .stButton>button {
-            color: white;
-            background-color: #004080;
+        .st-ef, .st-eg, .st-em {
+            background-color: #001f3f !important;
+            color: white !important;
         }
-        .stDownloadButton>button {
-            color: white;
-            background-color: #0074D9;
+        .css-1cpxqw2, .css-1cpxqw2:focus, textarea, input {
+            background-color: #003366 !important;
+            color: white !important;
+        }
+        div[role="radiogroup"] > label {
+            background-color: #003366 !important;
+            color: white !important;
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            margin-right: 0.5rem;
+        }
+        div[role="radiogroup"] > label[data-selected="true"] {
+            background-color: #004080 !important;
+            color: white !important;
+            font-weight: bold;
         }
     </style>
 """, unsafe_allow_html=True)
