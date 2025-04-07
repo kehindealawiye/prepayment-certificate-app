@@ -81,33 +81,35 @@ if st.button("Calculate Now"):
     advance_payment_refund = (advance_refund_pct / 100) * advance_payment
     amount_due = total_net_amount - advance_payment_refund - previous_payment
 
-    results = {
-        "TOTAL CONTRACT SUM": f"₦{total_contract_sum:,.2f}",
-        "REVISED CONTRACT SUM": f"₦{revised_contract_sum:,.2f}",
-        "ADVANCE PAYMENT": f"₦{advance_payment:,.2f}",
-        "RETENTION": f"₦{retention:,.2f}",
-        "TOTAL NET PAYMENT": f"₦{total_net_payment:,.2f}",
-        "VAT": f"₦{vat:,.2f}",
-        "TOTAL NET AMOUNT": f"₦{total_net_amount:,.2f}",
-        "ADVANCE PAYMENT REFUND": f"₦{advance_payment_refund:,.2f}",
-        "PREVIOUS PAYMENT": f"₦{previous_payment:,.2f}",
-        "AMOUNT DUE": f"₦{amount_due:,.2f}"
-    }
+    # Calculation results
+results = {
+    "TOTAL CONTRACT SUM": f"₦{total_contract_sum:,.2f}",
+    "REVISED CONTRACT SUM": f"₦{revised_contract_sum:,.2f}",
+    "ADVANCE PAYMENT": f"₦{advance_payment:,.2f}",
+    "RETENTION": f"₦{retention:,.2f}",
+    "TOTAL NET PAYMENT": f"₦{total_net_payment:,.2f}",
+    "VAT": f"₦{vat:,.2f}",
+    "TOTAL NET AMOUNT": f"₦{total_net_amount:,.2f}",
+    "ADVANCE PAYMENT REFUND": f"₦{advance_payment_refund:,.2f}",
+    "PREVIOUS PAYMENT": f"₦{previous_payment:,.2f}",
+    "AMOUNT DUE": f"₦{amount_due:,.2f}"
+}
 
-    st.subheader("Results")
-    for key, val in results.items():
-        st.write(f"**{key}:** {val}")
+# Display on screen
+st.subheader("Results")
+for key, val in results.items():
+    st.write(f"**{key}:** {val}")
 
-    df_result = pd.DataFrame.from_dict(results, orient='index', columns=["Value"]).reset_index()
-    df_result.columns = ["Metric", "Value"]
+# Convert to DataFrame
+df_result = pd.DataFrame.from_dict(results, orient='index', columns=["Value"]).reset_index()
+df_result.columns = ["Metric", "Value"]
 
-    # Excel Download Section
+# ✅ Excel download section — properly indented
 output = BytesIO()
 with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
     df_result.to_excel(writer, index=False, sheet_name='Prepayment Summary')
 output.seek(0)
 
-# Download button
 st.download_button(
     label="Download Prepayment Summary as Excel",
     data=output,
