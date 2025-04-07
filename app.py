@@ -74,8 +74,8 @@ df_result = pd.DataFrame(data)
 output = BytesIO()
 with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
     df_result.to_excel(writer, index=False, sheet_name='Prepayment Summary')
-    writer.save()
-    processed_data = output.getvalue()
+output.seek(0)
+processed_data = output.read()
 
 st.download_button(
     label="Download Prepayment Summary as Excel",
